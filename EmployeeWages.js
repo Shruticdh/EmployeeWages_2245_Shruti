@@ -3,10 +3,9 @@
 // Use const which signal that the identifier won't be reassigned. And use let where the variable may be reassigned. Both have Block Scope.
 //  Traditional var has function scope
 console.log("UseCase1");
-// use const to make variacble that will not change 
+
 const isPresent = 1;
 
-// let variable to find random number no. 0 or 1
 let employeeCheck = Math.floor(Math.random() * 2);
     
 if(employeeCheck === isPresent){
@@ -85,3 +84,19 @@ function tocacalculateDailyWages(totalworkhours){
 
 let DailyWages = tocacalculateDailyWages(totalworkhours);
 console.log(`Employee Daily Wages: ${DailyWages}`);
+
+
+
+// UseCase4 :- Calculating Wages for a Month assuming 20 Working Days in a Month
+console.log("UseCase4");
+const WorkingDays = 3;
+function totalMonthlyWages(DailyWages ,totalworkhours){
+    let totalWages = 0;
+    for(let i=1; i<=WorkingDays; i++){
+        totalWages +=DailyWages;
+    }
+    return totalWages;
+}
+
+let monthlyWages = totalMonthlyWages(DailyWages,totalworkhours);
+console.log(`Employee Monthly Wages: ${monthlyWages}`);
