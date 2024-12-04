@@ -89,7 +89,7 @@ console.log(`Employee Daily Wages: ${DailyWages}`);
 
 // UseCase4 :- Calculating Wages for a Month assuming 20 Working Days in a Month
 console.log("UseCase4");
-const WorkingDays = 3;
+const WorkingDays = 20;
 function totalMonthlyWages(DailyWages ,totalworkhours){
     let totalWages = 0;
     for(let i=1; i<=WorkingDays; i++){
@@ -100,3 +100,73 @@ function totalMonthlyWages(DailyWages ,totalworkhours){
 
 let monthlyWages = totalMonthlyWages(DailyWages,totalworkhours);
 console.log(`Employee Monthly Wages: ${monthlyWages}`);
+
+
+
+
+
+
+// Constants
+const WAGE_PER_HOUR = 20;
+const PART_TIME_HOURS = 4;
+const FULL_TIME_HOURS = 8;
+const MAX_WORKING_HOURS = 160;
+const MAX_WORKING_DAYS = 20;
+
+// Function to get work hours based on employee type
+function getWorkHours(workType) {
+    switch (workType) {
+        case 0:
+            return 0; // No work
+        case 1:
+            return PART_TIME_HOURS; // Part-time
+        case 2:
+            return FULL_TIME_HOURS; // Full-time
+        default:
+            return 0;
+    }
+}
+
+
+console.log("UseCase5");
+function calculateDailyWage(workHours) {
+    return workHours * WAGE_PER_HOUR;
+}
+function calculateWages() {
+    let totalWorkingHours = 0;
+    let totalWages = 0;
+    let totalWorkingDays = 0;
+
+    for (let day = 1; day <= MAX_WORKING_DAYS; day++) {
+        let empWorkType = Math.floor(Math.random() * 3); 
+        let workHours = getWorkHours(empWorkType);
+
+        if (totalWorkingHours + workHours > MAX_WORKING_HOURS) {
+            workHours = MAX_WORKING_HOURS - totalWorkingHours; 
+        }
+
+        totalWorkingHours += workHours;
+        totalWages += calculateDailyWage(workHours);
+
+        console.log(
+            `Day ${day}: Work Type = ${empWorkType}, Hours Worked = ${workHours}, Daily Wage = $${calculateDailyWage(workHours)}, Total Hours = ${totalWorkingHours}`
+        );
+
+        if (totalWorkingHours >= MAX_WORKING_HOURS) {
+            break;
+        }
+
+        totalWorkingDays = day; 
+    }
+
+    return {
+        totalWages,
+        totalWorkingHours,
+        totalWorkingDays,
+    };
+}
+
+let result = calculateWages();
+console.log(`Total Working Days: ${result.totalWorkingDays}`);
+console.log(`Total Working Hours: ${result.totalWorkingHours}`);
+console.log(`Total Wages Earned: $${result.totalWages}`);
