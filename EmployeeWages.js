@@ -45,7 +45,11 @@ switch(empWorkType){
     case 2:
         workHour = fullTime_hours;
         console.log("Employee worked full-time today");
-        break;    
+        break;  
+        
+    default: 
+        console.log("Invalid worktype");  
+        return 0;  
     }
     let dailyWages = workHour * perHourWork_wages;
 
