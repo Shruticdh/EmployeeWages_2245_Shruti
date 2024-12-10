@@ -32,7 +32,7 @@ let empWorkType = Math.floor(Math.random() * 3);
  
 let workHour;
 
-switch(empWorkType){
+switch(empWorkType , isPresent){
     case 0:
         workHour = noWork;
         console.log("Employee didn't work today");
